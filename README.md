@@ -1,2 +1,2 @@
-# diff_generator
-python program to generate the diff file
+# difference_generator
+The above python code generates difference between two files. the generated diff file is then opened in gVim and it is a necessary requirement.The generated diff file then pops up after the sucessful execution of the script. Also the data is supposed to be formatted in the required manner. The code makes use of shell commands in linux (command line statements) to generate the difference in required format.
