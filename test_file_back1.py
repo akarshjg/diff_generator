@@ -40,7 +40,7 @@ def select(user_input, list_length,temp):
 	diff_name=option_name[user_input]
 	file_path=fil[user_input]
 	for num in (0,len(file_path)):
-		filef=file_path[num]
+		files=file_path[num]
 		first_file=files[0]
 		second_file=files[1]
 		return_statement=command_line_statement(first_file,second_file,temp)
@@ -110,7 +110,7 @@ disp(name)
 
 usip=inp(name)
 
-select(usip,path,t,option_name)
+select(usip,path,t)
 
 file_display(usip)
 
