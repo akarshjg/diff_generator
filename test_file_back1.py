@@ -79,12 +79,8 @@ def con_catenate(file_name):
 
 
 def file_display(req_file):
-	if req_file==-1:
-		print 'invalid choice'
-		pass
-	else:
-		shell_command= 'gvim %s.txt' %req_file
-		os.system(shell_command)
+	shell_command= 'gvim %s.txt' %req_file
+	os.system(shell_command)
 	
 
 #set variables to zero
@@ -108,10 +104,12 @@ name=len(option_name)
 
 path=len(fil)
 
+
 disp(name)
 
 usip=inp(name)
 
-ret=select(usip,path,t,option_name)
+select(usip,path,t,option_name)
 
-file_display(ret)
+file_display(usip)
+
