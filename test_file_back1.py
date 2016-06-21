@@ -34,9 +34,10 @@ def inp(list_length):
 #function_to_display_the_choices
 # /required_file: the required driver files which have to be compared
 # /shell_command: return command for shell execution
+# /diff_name: the name of the generated diff file
 
-
-def select(user_input, list_length,temp,option_name):
+def select(user_input, list_length,temp):
+	diff_name=option_name[user_input]
 	file_path=fil[user_input]
 	for num in (0,len(file_path)):
 		filef=file_path[num]
@@ -44,7 +45,7 @@ def select(user_input, list_length,temp,option_name):
 		second_file=files[1]
 		return_statement=command_line_statement(first_file,second_file,temp)
 		call(return_statement)
-		con_catenate(option_name)
+		con_catenate(diff_name)
 
 
 #function to get the string to be used as shell commmand  
