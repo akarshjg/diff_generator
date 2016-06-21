@@ -108,9 +108,10 @@ name=len(option_name)
 
 path=len(fil)
 
-
 disp(name)
 
 usip=inp(name)
 
 ret=select(usip,path,t,option_name)
+
+file_display(ret)
