@@ -1,0 +1,141 @@
+#!/usr/bin/python
+
+
+import os
+import sys
+import os.path
+from diff_file_data import *
+
+#Check if file exists
+
+
+def check_file(file_path):
+	if os.path.exists(file_path) == True:
+		pass
+	else:
+		print 'invalid input'
+		pass
+
+#display the options to select the required drivers
+# /option_name[]: array containing name of the files
+# /list_length: length of array option_name
+
+
+def disp(list_length):
+	print 'Select the driver'
+	for num in range(0,list_length):
+		print '%s' % option_name[num]
+
+
+#Reading input from the user
+# /user_input: input by user
+
+
+def inp(list_length):
+	user_input = int(input("Enter a choice: "))
+	if user_input >=1 and user_input<=list_length: 
+		return user_input-1
+	else:
+		print 'invalid input'
+		return	inp(list_length)
+
+		
+#depending on the user choice the elements from the list are selected
+# /file_path[]: array of paths of the selected drivers
+# /list_length: number of pair of files that can be compared
+# /diff_name: the name of the generated diff file
+
+
+def select(user_input, list_length,temp):
+	diff_name=option_name[user_input]
+	delete_file(diff_name)
+	file_path=fil[user_input]
+	ln=len(file_path)
+	for num in range(0,ln):
+		files=file_path[num]
+		first_file=files[0]
+		check_file(first_file)
+		second_file=files[1]
+		check_file(second_file)
+		return_statement=command_line_statement(first_file,second_file,temp)
+		call(return_statement)
+		con_catenate(diff_name)
+		num=num+1
+		delete_file(temp)
+
+
+#function to get the string to be used as shell commmand  
+# /first_file: input file 1
+# /second_file: input file 2
+# /required_file: output diff file 
+# /returns: return value of diff
+
+
+def command_line_statement(first_file,second_file,required_file):
+	return ('diff %s %s > %s.txt') % (first_file,second_file,required_file)
+
+
+#to run the command in shell we use os.system
+# /return_statement: return command for shell execution
+
+
+def call(return_statement):
+	os.system(return_statement)
+
+
+#concatanate multiple diff_files generated
+# /file_name: name of the final diff file
+
+
+def con_catenate(file_name):
+	statement=('cat temp.txt >> %s.txt') % file_name
+	os.system(statement) 
+
+#function to delete the unwanted files
+
+
+def delete_file(file_name):
+	statement=('rm %s.txt') % file_name
+	os.system(statement)
+
+
+#function_to_display_the_generated_diff_file
+# /req_file: the required driver files which have been compared
+# /shell_command: return command for shell execution
+
+
+def file_display(req_file):
+	file_name=option_name[req_file]
+	shell_command= 'gvim %s.txt' %file_name
+	os.system(shell_command)
+	
+
+#set variables to zero
+# /usip: user input to select the file
+# /ret: return statement generated
+# /req: required file name 
+# /ret: return value of diff
+# /name: length of array option_name
+# /path: length of array file_path
+
+
+usip=0
+
+ret=0
+
+t='temp'
+
+req=0
+
+name=len(option_name)
+
+path=len(fil)
+
+
+disp(name)
+
+usip=inp(name)
+
+select(usip,path,t)
+
+file_display(usip)
