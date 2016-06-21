@@ -26,10 +26,8 @@ def inp(list_length):
 	if user_input >=1 and user_input<=list_length: 
 		return user_input-1
 	else:
-		print 'Invalid Choice'
-		sys.exit(0)
-
-
+		inp(list_length)
+		
 #depending on the user choice the elements from the list are selected
 # /file_path[]: array of paths of the selected drivers
 # /list_length: number of pair of files that can be compared
@@ -41,19 +39,12 @@ def inp(list_length):
 def select(user_input, list_length,temp,option_name):
 	file_path=fil[user_input]
 	for num in (0,len(file_path)):
-		file_cmp=file_path[num]
-		files=file_cmp[0]
+		filef=file_path[num]
 		first_file=files[0]
 		second_file=files[1]
-		file_name=option_name[user_input]
-		return_statement=command_line_statement(first_file,second_file,option_name)
+		return_statement=command_line_statement(first_file,second_file,temp)
 		call(return_statement)
 		con_catenate(option_name)
-		if file_cmp[1]==1:
-			continue	
-		else:
-			return(temp)
-			break
 
 
 #function to get the string to be used as shell commmand  
@@ -123,5 +114,3 @@ disp(name)
 usip=inp(name)
 
 ret=select(usip,path,t,option_name)
-
-file_display(ret)
